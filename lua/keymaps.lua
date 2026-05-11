@@ -1,14 +1,18 @@
 -- [[ Basic Keymaps ]]
-vim.keymap.set("n", "<leader>e", vim.cmd.Oil, { desc="Open file explorer" })
-vim.keymap.set("n", "<leader>w", vim.cmd.write, { desc="write shortcut" })
-vim.keymap.set("n", "<leader>W", vim.cmd.wall, { desc="write all shortcut" })
-vim.keymap.set("i", "jj", "<Esc>", { desc="Escape shortcut" })
+vim.keymap.set('n', '<leader>e', vim.cmd.Oil, { desc = 'Open file explorer' })
+vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = 'write shortcut' })
+vim.keymap.set('n', '<leader>W', vim.cmd.wall, { desc = 'write all shortcut' })
+vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Escape shortcut' })
 
--- TIP: Disable arrow keys in normal mode
+-- Forcing use of vim movements
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('i', '<Esc>', '<cmd>echo "Use jj to escape!!"<CR>')
+
+-- buffers
+vim.keymap.set('n', '<leader>Q', '<cmd>bdelete<CR>', { noremap = true, silent = true })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -19,7 +23,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 --  See `:help vim.keymap.set()`
-
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -50,7 +53,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })

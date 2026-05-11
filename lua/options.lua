@@ -67,3 +67,7 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+vim.opt.shortmess:append 'A' -- suppress swap file ATTENTION warning
+--vim.opt.termguicolors = true
+--vim.env.TERM = 'xterm-256color'
