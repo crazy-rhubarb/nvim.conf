@@ -4,13 +4,6 @@ vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = 'write shortcut' })
 vim.keymap.set('n', '<leader>W', vim.cmd.wall, { desc = 'write all shortcut' })
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Escape shortcut' })
 
--- Forcing use of vim movements
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-vim.keymap.set('i', '<Esc>', '<cmd>echo "Use jj to escape!!"<CR>')
-
 -- buffers
 vim.keymap.set('n', '<leader>Q', '<cmd>bdelete<CR>', { noremap = true, silent = true })
 
