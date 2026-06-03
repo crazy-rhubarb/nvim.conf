@@ -4,7 +4,7 @@ vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = false
 
-vim.cmd.colorscheme 'koehler'
+vim.cmd.colorscheme 'slate'
 
 require 'options'
 require 'keymaps'
