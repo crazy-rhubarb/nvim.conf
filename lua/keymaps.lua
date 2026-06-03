@@ -7,6 +7,14 @@ vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Escape shortcut' })
 -- buffers
 vim.keymap.set('n', '<leader>Q', '<cmd>bdelete<CR>', { noremap = true, silent = true })
 
+-- pandoc command
+vim.keymap.set('n', '<leader>E', function()
+  local src = vim.fn.expand '%'
+  local result = vim.fn.system('pandoc -f markdown -t mediawiki ' .. src)
+  vim.fn.setreg('+', result)
+  print 'MediaWiki copied to clipboard'
+end, { desc = 'Copy as MediaWiki to clipboard' })
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
