@@ -3,8 +3,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = false
-
-vim.cmd.colorscheme 'slate'
+vim.cmd.colorscheme 'koehler'
 
 require 'options'
 require 'keymaps'
