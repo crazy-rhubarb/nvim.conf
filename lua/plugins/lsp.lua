@@ -101,12 +101,26 @@ return {
         settings = {
           python = {
             analysis = {
+              pythonVersion = '3.9', -- Flags incompatible syntax
+
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
               diagnosticMode = 'workspace',
 
               -- typeCheckingMode = 'strict',
             },
+          },
+        },
+      },
+
+      bashls = {
+        settings = {
+          bashIde = {
+            globPattern = '**/*@(.sh|.bash|.zsh)',
+            shellcheckPath = 'shellcheck',
+            shellcheckArguments = '',
+            highlightParsingErrors = true,
+            includeAllWorkspaceSymbols = false,
           },
         },
       },
