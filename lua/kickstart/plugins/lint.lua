@@ -11,6 +11,11 @@ return {
       markdown = { 'markdownlint' }, -- Make sure to install `markdownlint` via mason / npm
     }
 
+    lint.linters.markdownlint.args = {
+      '--disable',
+      'MD010',
+    }
+
     -- To allow other plugins to add linters to require('lint').linters_by_ft,
     -- instead set linters_by_ft like this:
     -- lint.linters_by_ft = lint.linters_by_ft or {}
