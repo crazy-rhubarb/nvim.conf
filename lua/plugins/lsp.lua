@@ -114,6 +114,7 @@ return {
       },
 
       bashls = {
+        filetypes = { 'sh', 'bash', 'zsh' },
         settings = {
           bashIde = {
             globPattern = '**/*@(.sh|.bash|.zsh)',
