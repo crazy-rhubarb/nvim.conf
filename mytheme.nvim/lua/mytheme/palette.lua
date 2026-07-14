@@ -1,0 +1,22 @@
+-- mytheme.nvim/lua/mytheme/palette.lua
+return {
+  black = "#000001",
+  red = "#f77272",
+  green = "#33ff33",
+  yellow = "#1ae642",
+  blue = "#68fdfe",
+  magenta = "#ff66ff",
+  cyan = "#87cefa",
+  white = "#dbdbd9",
+  orange = "#ffbf00",
+  bright_black = "#ffffff",
+  bright_salmon = "#ffbfaa",
+  bright_green = "#33ff33",
+  bright_yellow = "#fafa33",
+  bright_blue = "#68fdfe",
+  bright_magenta = "#ff66ff",
+  bright_cyan = "#68fdfe",
+  bright_white = "#dbdbd9",
+  bg = "#112a2a",
+  fg = "#33ff33",
+}
