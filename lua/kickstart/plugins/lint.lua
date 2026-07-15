@@ -9,6 +9,7 @@ return {
     local lint = require 'lint'
     lint.linters_by_ft = {
       markdown = { 'markdownlint' }, -- Make sure to install `markdownlint` via mason / npm
+      ['yaml'] = { 'ansible_lint' },
     }
 
     lint.linters.markdownlint.args = {

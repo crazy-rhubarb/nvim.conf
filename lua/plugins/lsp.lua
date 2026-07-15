@@ -125,6 +125,30 @@ return {
           },
         },
       },
+
+      ansiblels = {
+        settings = {
+          ansible = {
+            ansible = {
+              path = 'ansible',
+            },
+            executionEnvironment = {
+              enabled = false,
+            },
+            python = {
+              interpreterPath = 'python3',
+            },
+            validation = {
+              enabled = true,
+              lint = {
+                enabled = false,
+              },
+            },
+          },
+        },
+        filetypes = { 'yaml' },
+      },
+
       --
       -- Some languages (like typescript) have entire language plugins that can be useful:
       --    https://github.com/pmizio/typescript-tools.nvim
@@ -180,6 +204,8 @@ return {
     vim.list_extend(ensure_installed, {
       'black',
       'isort',
+      'ansible-language-server',
+      'ansible-lint',
       -- You can add other tools here that you want Mason to install
     })
 
