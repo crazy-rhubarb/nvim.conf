@@ -101,15 +101,37 @@ return {
         settings = {
           python = {
             analysis = {
+              pythonVersion = '3.9', -- Flags incompatible syntax
+
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
               diagnosticMode = 'workspace',
 
+<<<<<<< HEAD
               typeCheckingMode = 'strict',
+=======
+              -- typeCheckingMode = 'strict',
+>>>>>>> main
             },
           },
         },
       },
+<<<<<<< HEAD
+=======
+
+      bashls = {
+        filetypes = { 'sh', 'bash', 'zsh' },
+        settings = {
+          bashIde = {
+            globPattern = '**/*@(.sh|.bash|.zsh)',
+            shellcheckPath = 'shellcheck',
+            shellcheckArguments = '',
+            highlightParsingErrors = true,
+            includeAllWorkspaceSymbols = false,
+          },
+        },
+      },
+>>>>>>> main
       --
       -- Some languages (like typescript) have entire language plugins that can be useful:
       --    https://github.com/pmizio/typescript-tools.nvim
