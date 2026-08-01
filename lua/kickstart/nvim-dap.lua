@@ -1,4 +1,4 @@
-return {
+return { -- Debug Adapter Protocol integration
   'mfussenegger/nvim-dap',
   event = 'VeryLazy',
   dependencies = {
