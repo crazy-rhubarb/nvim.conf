@@ -1,3 +1,32 @@
+local columns_visible = false
+-- Functions
+local function toggle_columns()
+  local oil = require 'oil'
+  columns_visible = not columns_visible
+  if columns_visible then
+    oil.set_columns { 'permissions', 'size' }
+  else
+    oil.set_columns { 'icon' }
+  end
+end
+
+-- hide untracked git files and dotfiles,
+-- code from: https://github.com/stevearc/oil.nvim/blob/master/doc/recipes.md#hide-gitignored-files-and-show-git-tracked-hidden-files
+local function is_hidden_file(name, bufnr)
+  local dir = require('oil').get_current_dir(bufnr)
+  -- return not git_status[dir].tracked[name] # just use gitignore
+  local is_dotfile = vim.startswith(name, '.') and name ~= '..'
+  -- if no local directory (e.g. for ssh connections), just hide dotfiles
+  if not dir then return is_dotfile end
+  -- dotfiles are considered hidden unless tracked
+  if is_dotfile then
+    return not git_status[dir].tracked[name]
+  else
+    -- Hide if file is gitignored
+    return git_status[dir].ignored[name]
+  end
+end
+
 return {
   'stevearc/oil.nvim',
   ---@module 'oil'
@@ -10,27 +39,34 @@ return {
   opts = {
     delete_to_trash = true,
     view_options = {
-      -- hide git files from: https://github.com/stevearc/oil.nvim/blob/master/doc/recipes.md#hide-gitignored-files-and-show-git-tracked-hidden-files
       show_hidden = false,
-      is_hidden_file = function(name, bufnr)
-        local dir = require('oil').get_current_dir(bufnr)
-        local is_dotfile = vim.startswith(name, '.') and name ~= '..'
-        -- if no local directory (e.g. for ssh connections), just hide dotfiles
-        if not dir then return is_dotfile end
-        -- dotfiles are considered hidden unless tracked
-        if is_dotfile then
-          return not git_status[dir].tracked[name]
-        else
-          -- Check if file is gitignored
-          return git_status[dir].ignored[name]
-        end
-      end,
+      is_hidden_file = is_hidden_file,
     },
     keymaps = {
-      ['gh'] = 'actions.toggle_hidden', --TODO does this need a label?
+      -- Mine
+      ['gh'] = { 'actions.toggle_hidden', mode = 'n', desc = '[G]et [H]idden' },
+      ['gd'] = { callback = toggle_columns, mode = 'n', desc = '[G]et [D]etails' },
+      -- Defaults
+      ['g?'] = { 'actions.show_help', mode = 'n' },
+      ['<CR>'] = 'actions.select',
+      ['<C-s>'] = { 'actions.select', opts = { vertical = true } },
+      ['<C-h>'] = { 'actions.select', opts = { horizontal = true } },
+      ['<C-t>'] = { 'actions.select', opts = { tab = true } },
+      ['<C-p>'] = 'actions.preview',
+      ['<C-c>'] = { 'actions.close', mode = 'n' },
+      ['<C-l>'] = 'actions.refresh',
+      ['-'] = { 'actions.parent', mode = 'n' },
+      ['_'] = { 'actions.open_cwd', mode = 'n' },
+      ['`'] = { 'actions.cd', mode = 'n' },
+      ['g~'] = { 'actions.cd', opts = { scope = 'tab' }, mode = 'n' },
+      ['gs'] = { 'actions.change_sort', mode = 'n' },
+      ['gx'] = 'actions.open_external',
+      -- ['g.'] = { 'actions.toggle_hidden', mode = 'n' },
+      ['g\\'] = { 'actions.toggle_trash', mode = 'n' },
     },
   },
   -- Config function is called before the require("oil") step
+  -- Also from hide git recipe
   config = function(_, opts)
     local function parse_output(proc)
       local result = proc:wait()

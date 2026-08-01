@@ -5,7 +5,7 @@ vim.keymap.set('n', '<leader>W', vim.cmd.wall, { desc = 'write all shortcut' })
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Escape shortcut' })
 
 -- buffers
-vim.keymap.set('n', '<leader>Q', '<cmd>bdelete<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<CR>', { noremap = true, silent = true, desc = '[B]uffer [D]elete' })
 
 -- pandoc command
 vim.keymap.set('n', '<leader>E', function()

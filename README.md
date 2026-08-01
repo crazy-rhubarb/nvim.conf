@@ -1,5 +1,14 @@
 # kickstart.nvim
 
+# tom notes
+
+needs:
+
+```
+pacman -S nvim npm tree-sitter-cli
+```
+
+
 ## Introduction
 
 A starting point for Neovim that is:
