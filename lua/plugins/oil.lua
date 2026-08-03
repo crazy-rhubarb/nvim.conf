@@ -32,15 +32,19 @@ return {
   ---@module 'oil'
   ---@type oil.SetupOpts
   dependencies = { { 'nvim-mini/mini.icons', opts = {} } },
-  -- Optional dependencies
-  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-  -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
   lazy = false,
+
   opts = {
+    default_file_explorer = true,
     delete_to_trash = true,
     view_options = {
       show_hidden = false,
       is_hidden_file = is_hidden_file,
+    },
+    lsp_file_methods = {
+      enabled = true,
+      timeout_ms = 1000,
+      autosave_changes = true,
     },
     keymaps = {
       -- Mine

@@ -40,17 +40,13 @@ return {
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
-        -- Rename the variable under your cursor.
-        --  Most Language Servers support renaming across files, etc.
+        -- Keymaps
         map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+        map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
         map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
-
-        -- WARN: This is not Goto Definition, this is Goto Declaration.
-        --  For example, in C this would take you to the header.
-        map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -91,22 +87,23 @@ return {
       end,
     })
 
-    -- Enable the following language servers
-    --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --  See `:help lsp-config` for information about keys and how to configure
     ---@type table<string, vim.lsp.Config>
     local servers = {
 
-      pyright = {
+      basedpyright = {
         settings = {
-          python = {
+          basedpyright = {
             analysis = {
-              pythonVersion = '3.9', -- Flags incompatible syntax
-
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
               diagnosticMode = 'workspace',
 
+              pythonVersion = '3.9', -- Flags incompatible syntax , 3.9 is compatible with old rpis
+              diagnosticSeverityOverrides = {
+                reportDeprecated = 'none',
+                reportAny = 'none',
+              },
               -- typeCheckingMode = 'strict',
             },
           },
@@ -193,20 +190,14 @@ return {
       },
     }
 
-    -- Ensure the servers and tools above are installed
-    --
-    -- To check the current status of installed tools and/or manually install
-    -- other tools, you can run
-    --    :Mason
-    --
-    -- You can press `g?` for help in this menu.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'black',
       'isort',
       'ansible-language-server',
       'ansible-lint',
-      -- You can add other tools here that you want Mason to install
+      'markdownlint',
+      'basedpyright',
     })
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }

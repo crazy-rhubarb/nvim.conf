@@ -1,4 +1,4 @@
--- autopairs
+-- autopairs - bracket pairs?
 -- https://github.com/windwp/nvim-autopairs
 
 ---@module 'lazy'
