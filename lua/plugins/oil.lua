@@ -6,7 +6,7 @@ local function toggle_columns()
   if columns_visible then
     oil.set_columns { 'permissions', 'size' }
   else
-    oil.set_columns { 'icon' }
+    oil.set_columns {}
   end
 end
 
@@ -35,16 +35,12 @@ return {
   lazy = false,
 
   opts = {
+    columns = {},
     default_file_explorer = true,
     delete_to_trash = true,
     view_options = {
       show_hidden = false,
       is_hidden_file = is_hidden_file,
-    },
-    lsp_file_methods = {
-      enabled = true,
-      timeout_ms = 1000,
-      autosave_changes = true,
     },
     keymaps = {
       -- Mine
