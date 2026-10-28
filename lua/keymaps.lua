@@ -15,6 +15,38 @@ vim.keymap.set('n', '<leader>E', function()
   print 'MediaWiki copied to clipboard'
 end, { desc = 'Copy as MediaWiki to clipboard' })
 
+vim.keymap.set('n', '<leader>mp', function()
+  local src = vim.fn.expand '%:p'
+  local out = vim.fn.tempname() .. '.html'
+  local title = vim.fn.expand '%:t'
+
+  if vim.fn.executable 'firefox' == 0 then
+    vim.notify('firefox not found in PATH', vim.log.levels.ERROR)
+    return
+  end
+
+  local result = vim.fn.system {
+    'pandoc',
+    '-f',
+    'markdown',
+    '-t',
+    'html',
+    '--standalone',
+    '--metadata',
+    'pagetitle=' .. title,
+    '-o',
+    out,
+    src,
+  }
+  if vim.v.shell_error ~= 0 then
+    vim.notify('pandoc failed: ' .. result, vim.log.levels.ERROR)
+    return
+  end
+
+  vim.fn.jobstart({ 'firefox', out }, { detach = true })
+  print 'Opened HTML in Firefox'
+end, { desc = 'Convert to HTML and open in Firefox' })
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --

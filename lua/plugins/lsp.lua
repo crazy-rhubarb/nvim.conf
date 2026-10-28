@@ -99,12 +99,12 @@ return {
               useLibraryCodeForTypes = true,
               diagnosticMode = 'workspace',
 
-              pythonVersion = '3.9', -- Flags incompatible syntax , 3.9 is compatible with old rpis
+              pythonVersion = '3.10', -- Flags incompatible syntax , 3.9 is compatible with old rpis
               diagnosticSeverityOverrides = {
                 reportDeprecated = 'none',
                 reportAny = 'none',
               },
-              -- typeCheckingMode = 'strict',
+              typeCheckingMode = 'basic',
             },
           },
         },
